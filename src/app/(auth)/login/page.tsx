@@ -1,12 +1,13 @@
 import LoginForm from '@/features/auth/components/login-form'
 import { requireUnauth } from '@/lib/auth-utils'
-import React from 'react'
+import Link from 'next/link';
+import Image from 'next/image';
 
 const page = async () => {
     await requireUnauth();
-    
+
     return (
-        <div className='flex items-center justify-center w-full min-h-screen'>
+        <div>
             <LoginForm />
         </div>
     )

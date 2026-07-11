@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -92,19 +93,21 @@ const RegisterForm = () => {
                         <div className="grid gap-3">
                             <Button
                                 variant="outline"
-                                className="w-full"
+                                className="w-full flex items-center gap-6"
                                 type="button"
                                 disabled={isPending}
                             >
+                                <Image src={"/logos/github.svg"} alt="github" width={15} height={15} />
                                 Continue with GitHub
                             </Button>
 
                             <Button
                                 variant="outline"
-                                className="w-full"
+                                className="w-full flex items-center gap-6"
                                 type="button"
                                 disabled={isPending}
                             >
+                                <Image src={"/logos/google.svg"} alt="github" width={15} height={15} />
                                 Continue with Google
                             </Button>
                         </div>
