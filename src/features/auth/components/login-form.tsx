@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const loginSchema = z.object({
     email: z.email("Please enter a valid email address"),
@@ -45,14 +46,14 @@ const LoginForm = () => {
             {
                 email: values.email,
                 password: values.password,
-                callbackURL: "/"
+                callbackURL: "/",
             },
             {
                 onError: (ctx) => {
-                    toast.error(ctx.error.message)
-                }
+                    toast.error(ctx.error.message);
+                },
             }
-        )
+        );
     };
 
     const isPending = form.formState.isSubmitting;
@@ -61,9 +62,7 @@ const LoginForm = () => {
         <div className="w-full">
             <Card className="mx-auto w-full max-w-md shadow-lg border-border/60">
                 <CardHeader className="space-y-2 text-center">
-                    <CardTitle className="text-2xl font-bold">
-                        Welcome back
-                    </CardTitle>
+                    <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
                     <CardDescription>
                         Sign in to continue to your account
                     </CardDescription>
@@ -75,23 +74,33 @@ const LoginForm = () => {
                         className="space-y-6"
                     >
                         {/* Social Login */}
-                        <div className="grid gap-3">
+                        <div className="grid grid-cols-2 gap-3">
                             <Button
                                 variant="outline"
-                                className="w-full"
+                                className="w-full h-30"
                                 type="button"
                                 disabled={isPending}
                             >
-                                Continue with GitHub
+                                <Image
+                                    src={"./logos/github.svg"}
+                                    width={30}
+                                    height={30}
+                                    alt="github"
+                                />
                             </Button>
 
                             <Button
                                 variant="outline"
-                                className="w-full"
+                                className="w-full h-30"
                                 type="button"
                                 disabled={isPending}
                             >
-                                Continue with Google
+                                <Image
+                                    src={"./logos/google.svg"}
+                                    width={30}
+                                    height={30}
+                                    alt="google"
+                                />
                             </Button>
                         </div>
 
@@ -122,7 +131,6 @@ const LoginForm = () => {
                                             id={field.name}
                                             type="email"
                                             placeholder="m@example.com"
-                                            className=""
                                             aria-invalid={fieldState.invalid}
                                         />
 
@@ -139,15 +147,13 @@ const LoginForm = () => {
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
                                         <div className="flex items-center justify-between">
-                                            <FieldLabel htmlFor={field.name}>
-                                                Password
-                                            </FieldLabel>
+                                            <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                                             {/* TODO: forgot password logic */}
                                             <Link
                                                 href="/forgot-password"
                                                 className="text-sm text-muted-foreground hover:text-primary hover:underline"
                                             >
-                                                Forgot password? 
+                                                Forgot password?
                                             </Link>
                                         </div>
 
@@ -156,7 +162,6 @@ const LoginForm = () => {
                                             id={field.name}
                                             type="password"
                                             placeholder="••••••••"
-                                            className=""
                                             aria-invalid={fieldState.invalid}
                                         />
 
@@ -179,7 +184,7 @@ const LoginForm = () => {
 
                         {/* Footer */}
                         <p className="text-center text-sm text-muted-foreground">
-                            Don't have an account?{" "}
+                            Don&apos;t have an account?{" "}
                             <Link
                                 href="/sign-up"
                                 className="font-medium text-primary hover:underline"
