@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  //  this will redirect users landing on the root page to /workflows
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/workflows",
+        permanent: false,
+      }
+    ]
+  },
+
   /* config options here */
   reactCompiler: true,
   images: {
@@ -13,6 +24,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  devIndicators: false,
+  
 };
 
 export default nextConfig;
